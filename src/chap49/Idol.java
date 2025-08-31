@@ -2,7 +2,7 @@ package chap49;
 
 public class Idol {
 
-     // 아이돌의 속성 : 필드
+    // 아이돌의 속성 : 필드
     String name;
     String groupName;
 
