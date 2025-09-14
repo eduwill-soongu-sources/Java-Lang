@@ -1,18 +1,43 @@
-## Getting Started
+```java
+                            //  abacabcd
+public static String calculFn(String str, int index, boolean[] seen) {
+    if (index < 0) return "";
+    char c = str.charAt(index);
+    String result = calculFn(str, index - 1, seen); // 재귀 호출
+    if (!seen[c]) { // seen배열의 97번인덱스가 false면
+        seen[c] = true; // 97번인덱스를 true로 바꿔라 - 마킹
+        return c + result;
+    }
+    return result;
+}
+```
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+cf(7) 
+ㄴ c = 'd', result = cf(6): 'c' + 'b' + 'a' + ""
+  => seen[100] = true, return 'd' + 'c' + 'b' + 'a' + "" => "dcba"
+cf(6)
+ㄴ c = 'c', result = cf(5): 'c' + 'b' + 'a' + ""
+  => seen[99]
+cf(5)
+ㄴ c = 'b', result = cf(4): 'c' + 'b' + 'a' + ""
+  => seen[98]
+cf(4)
+ㄴ c = 'a', result = cf(3): 'c' + 'b' + 'a' + ""
+  => seen[97]
+cf(3)
+ㄴ c = 'c', result = cf(2): b + a + ""
+  => seen[99] = true, return 'c' + 'b' + 'a' + ""
+cf(2)
+ㄴ c = 'a', result = cf(1): b + a + ""
+  => seen[97]
 
-## Folder Structure
+cf(1)
+ㄴ c = 'b', result = cf(0) : a + ""
+  => seen[98] = true,  return b + a + ""
 
-The workspace contains two folders by default, where:
+cf(0)
+ㄴ c = 'a': 97, result = cf(-1): ""
+  => seen[97] = true,  return a + ""
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+cf(-1) return "";
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
